@@ -1,5 +1,5 @@
 ## Main Settings ##
-random: true
+start_delay: 1
 frequency: 5
 
 ## Messages ##

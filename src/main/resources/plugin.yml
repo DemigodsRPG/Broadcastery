@@ -1,4 +1,5 @@
 name: Broadcastery
+description: A straight-forward, slimmed down broadcast plugin.
 main: com.censoredsoftware.broadcastery.BroadcasteryPlugin
 version: ${project.version}
 authors: [_Alex, HmmmQuestionMark]
