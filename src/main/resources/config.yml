@@ -1,0 +1,9 @@
+## Main Settings ##
+random: true
+frequency: 5
+
+## Messages ##
+messages:
+    - '&cThis is a test message.'
+    - '&8Check out Broadcastery!'
+    - '&3Censored Software rocks!'

@@ -1,0 +1,5 @@
+name: Broadcastery
+main: com.censoredsoftware.broadcastery.BroadcasteryPlugin
+version: ${project.version}
+authors: [_Alex, HmmmQuestionMark]
+softdepend: [CensoredLib]
