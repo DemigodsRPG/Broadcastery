@@ -4,3 +4,8 @@ main: com.censoredsoftware.broadcastery.BroadcasteryPlugin
 version: ${project.version}
 authors: [_Alex, HmmmQuestionMark]
 softdepend: [CensoredLib]
+commands:
+    broadcastery:
+        usage: /broadcastery [option] [args]
+        aliases: [bc]
+        permission: broadcastery.admin
