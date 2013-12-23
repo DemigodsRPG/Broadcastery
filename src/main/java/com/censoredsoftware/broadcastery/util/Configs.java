@@ -1,6 +1,5 @@
 package com.censoredsoftware.broadcastery.util;
 
-import java.io.File;
 import java.util.List;
 
 import org.bukkit.configuration.Configuration;
@@ -89,13 +88,7 @@ public class Configs
 		List<String> list = getSettingList(id);
 		list.add(data);
 		Broadcastery.plugin.getConfig().set(id, list);
-
-		try
-		{
-			Broadcastery.plugin.getConfig().save(new File(Broadcastery.plugin.getDataFolder() + "/config.yml"));
-		}
-		catch(Exception ignored)
-		{}
+		Broadcastery.plugin.saveConfig();
 	}
 
 	public static void removeFromSettingList(String id, String data)
@@ -103,12 +96,6 @@ public class Configs
 		List<String> list = getSettingList(id);
 		list.remove(data);
 		Broadcastery.plugin.getConfig().set(id, list);
-
-        try
-        {
-			Broadcastery.plugin.getConfig().save(new File(Broadcastery.plugin.getDataFolder() + "/config.yml"));
-		}
-		catch(Exception ignored)
-		{}
+		Broadcastery.plugin.saveConfig();
 	}
 }
