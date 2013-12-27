@@ -1,10 +1,8 @@
 package com.censoredsoftware.broadcastery;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
+import com.censoredsoftware.broadcastery.util.Configs;
+import com.censoredsoftware.broadcastery.util.Messages;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,8 +12,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.mcstats.MetricsLite;
 
-import com.censoredsoftware.broadcastery.util.Configs;
-import com.censoredsoftware.broadcastery.util.Messages;
+import java.util.List;
+import java.util.Random;
 
 public class Broadcastery
 {
@@ -72,12 +70,12 @@ public class Broadcastery
 		try
 		{
 			(new MetricsLite(plugin)).start();
-            Messages.info("Metrics loaded.");
+			Messages.info("Metrics loaded.");
 		}
 		catch(Exception ignored)
 		{
-            Messages.info("Metrics not loaded.");
-        }
+			Messages.info("Metrics not loaded.");
+		}
 	}
 }
 
@@ -120,7 +118,7 @@ class Commands implements CommandExecutor
 					}
 
 					// Create the message from the args
-					ArrayList<String> messageArr = new ArrayList<>(Arrays.asList(args));
+					List<String> messageArr = Lists.newArrayList(args);
 					messageArr.remove(0);
 					String message = StringUtils.join(messageArr, " ");
 

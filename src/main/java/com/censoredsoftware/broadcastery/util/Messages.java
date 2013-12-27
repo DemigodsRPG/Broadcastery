@@ -1,21 +1,23 @@
 package com.censoredsoftware.broadcastery.util;
 
-import java.util.logging.Logger;
-
+import com.censoredsoftware.broadcastery.Broadcastery;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-import com.censoredsoftware.broadcastery.Broadcastery;
+import java.util.logging.Logger;
 
 /**
  * Module to handle all common messages sent to players or the console.
  */
 public class Messages
 {
-	private static final Logger log = Logger.getLogger("Minecraft");
-	private static String pluginName;
+	private static final Logger LOGGER;
+	private static final String PLUGIN_NAME;
+	private static final int LINE_SIZE, IN_GAME_LINE_SIZE;
 
 	/**
 	 * Constructor for the Messages.
@@ -24,7 +26,10 @@ public class Messages
 	 */
 	static
 	{
-		pluginName = Broadcastery.plugin.getName();
+		LOGGER = Broadcastery.plugin.getLogger();
+		PLUGIN_NAME = Broadcastery.plugin.getName();
+		LINE_SIZE = 59 - PLUGIN_NAME.length();
+		IN_GAME_LINE_SIZE = 54;
 	}
 
 	/**
@@ -34,7 +39,13 @@ public class Messages
 	 */
 	public static void tagged(CommandSender sender, String msg)
 	{
-		sender.sendMessage(ChatColor.RED + "[" + pluginName + "] " + ChatColor.RESET + msg);
+		if(ChatColor.stripColor(msg).length() + PLUGIN_NAME.length() + 3 > IN_GAME_LINE_SIZE)
+		{
+			for(String line : wrapInGame(ChatColor.RED + "[" + PLUGIN_NAME + "] " + ChatColor.RESET + msg))
+				sender.sendMessage(line);
+			return;
+		}
+		sender.sendMessage(ChatColor.RED + "[" + PLUGIN_NAME + "] " + ChatColor.RESET + msg);
 	}
 
 	/**
@@ -44,7 +55,13 @@ public class Messages
 	 */
 	public static void info(String msg)
 	{
-		log.info("[" + pluginName + "] " + msg);
+		if(msg.length() > LINE_SIZE)
+		{
+			for(String line : wrapConsole(msg))
+				LOGGER.info(line);
+			return;
+		}
+		LOGGER.info(msg);
 	}
 
 	/**
@@ -54,7 +71,13 @@ public class Messages
 	 */
 	public static void warning(String msg)
 	{
-		log.warning("[" + pluginName + "] " + msg);
+		if(msg.length() > LINE_SIZE)
+		{
+			for(String line : wrapConsole(msg))
+				LOGGER.warning(line);
+			return;
+		}
+		LOGGER.warning(msg);
 	}
 
 	/**
@@ -63,8 +86,19 @@ public class Messages
 	 * @param msg The message to be sent.
 	 */
 	public static void severe(String msg)
+    {
+        if(msg.length() >= LINE_SIZE)
+        {
+			for(String line : wrapConsole(msg))
+				LOGGER.severe(line);
+			return;
+		}
+		LOGGER.severe(msg);
+	}
+
+	public static String[] wrapConsole(String msg)
 	{
-		log.severe("[" + pluginName + "] " + msg);
+		return WordUtils.wrap(msg, LINE_SIZE, "/n", false).split("/n");
 	}
 
 	/**
@@ -74,7 +108,19 @@ public class Messages
 	 */
 	public static void broadcast(String msg)
 	{
+		if(ChatColor.stripColor(msg).length() > IN_GAME_LINE_SIZE)
+        {
+            Server server = Broadcastery.plugin.getServer();
+            for(String line : wrapInGame(msg))
+                server .broadcastMessage(line);
+            return;
+        }
 		Broadcastery.plugin.getServer().broadcastMessage(msg);
+	}
+
+	public static String[] wrapInGame(String msg)
+	{
+		return WordUtils.wrap(msg, IN_GAME_LINE_SIZE, "/n", false).split("/n");
 	}
 
 	/**
