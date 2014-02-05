@@ -1,8 +1,7 @@
 package com.censoredsoftware.broadcastery;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import com.censoredsoftware.broadcastery.util.Messages;
 
 public class BroadcasteryPlugin extends JavaPlugin
 {
@@ -13,13 +12,16 @@ public class BroadcasteryPlugin extends JavaPlugin
 		Broadcastery.load();
 
 		// Print success!
-		Messages.info("Successfully enabled.");
+		getLogger().info("Successfully enabled.");
 	}
 
 	@Override
 	public void onDisable()
 	{
+		// Cancel tasks
+		Bukkit.getScheduler().cancelTasks(this);
+
 		// Print success!
-		Messages.info("Successfully disabled.");
+		getLogger().info("Successfully disabled.");
 	}
 }
