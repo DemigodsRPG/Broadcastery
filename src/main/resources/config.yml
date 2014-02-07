@@ -1,6 +1,7 @@
 ## Main Settings ##
 start_delay: 1
 frequency: 5
+random_order: true
 
 ## Messages ##
 messages:

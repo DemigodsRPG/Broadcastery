@@ -29,8 +29,7 @@
 
     <properties> <!-- It is important to keep these up to date manually. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <censoredLib.version>1.0.0-SNAPSHOT</censoredLib.version>
-        <spigot.version>1.7.2-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.7.2-R0.2-SNAPSHOT</spigot.version>
         <mcstats.version>R7</mcstats.version>
     </properties>
 
@@ -67,23 +66,12 @@
             <url>http://repo.md-5.net/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>censoredsoftware-repo</id>
-            <url>http://repo.censoredsoftware.com</url>
-        </repository>
-        <repository>
             <id>Plugin Metrics</id>
             <url>http://repo.mcstats.org/content/repositories/public</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>com.censoredsoftware</groupId>
-            <artifactId>CensoredLib</artifactId>
-            <version>${censoredLib.version}</version>
-            <scope>compile</scope>
-            <type>jar</type>
-        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -107,7 +95,7 @@
     </dependencies>
 
     <build>
-        <finalName>Broadcastery</finalName>
+        <finalName>${project.name}</finalName>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
         <resources>
@@ -164,9 +152,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
-                <configuration>
-                    <finalName>Broadcastery</finalName>
-                </configuration>
             </plugin>
         </plugins>
     </build>
