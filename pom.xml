@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.censoredsoftware</groupId>
+    <groupId>com.demigodsrpg</groupId>
     <artifactId>Broadcastery</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <name>Broadcastery</name>
     <description>A straight-forward, slimmed down broadcast plugin.</description>
-    <url>http://github.com/CensoredSoftware/Broadcastery</url>
+    <url>http://github.com/DemigodsRPG/Broadcastery</url>
 
     <licenses>
         <license>
@@ -22,15 +22,10 @@
         </license>
     </licenses>
 
-    <ciManagement>
-        <system>Jenkins</system>
-        <url>http://builds.censoredsoftware.com/</url>
-    </ciManagement>
-
     <properties> <!-- It is important to keep these up to date manually. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.7.2-R0.2-SNAPSHOT</spigot.version>
-        <mcstats.version>R7</mcstats.version>
+        <spigot.version>1.10-R0.1-SNAPSHOT</spigot.version>
+        <mcstats.version>R8-SNAPSHOT</mcstats.version>
     </properties>
 
     <developers>
@@ -38,8 +33,6 @@
             <id>alexbennett</id>
             <name>Alex Bennett</name>
             <url>http://alexben.net/t</url>
-            <organization>CensoredSoftware</organization>
-            <organizationUrl>http://www.censoredsoftware.com/</organizationUrl>
             <roles>
                 <role>developer</role>
             </roles>
@@ -48,8 +41,7 @@
         <developer>
             <id>HmmmQuestionMark</id>
             <name>Alexander Chauncey</name>
-            <organization>CensoredSoftware</organization>
-            <organizationUrl>http://www.censoredsoftware.com/</organizationUrl>
+            <url>https://hqm.me/</url>
             <roles>
                 <role>developer</role>
             </roles>
@@ -62,8 +54,8 @@
 
     <repositories>
         <repository>
-            <id>md5-repo</id>
-            <url>http://repo.md-5.net/content/repositories/snapshots/</url>
+            <id>spigot</id>
+            <url>http://hub.spigotmc.org/nexus/content/repositories/public/</url>
         </repository>
         <repository>
             <id>Plugin Metrics</id>
@@ -83,12 +75,6 @@
             <groupId>org.mcstats.bukkit</groupId>
             <artifactId>metrics-lite</artifactId>
             <version>${mcstats.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-            </exclusions>
             <scope>compile</scope>
             <optional>false</optional>
         </dependency>
@@ -144,8 +130,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>

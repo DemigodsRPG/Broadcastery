@@ -1,9 +1,8 @@
 name: Broadcastery
 description: A straight-forward, slimmed down broadcast plugin.
-main: com.censoredsoftware.broadcastery.BroadcasteryPlugin
+main: com.demigodsrpg.broadcastery.Broadcastery
 version: ${project.version}
 authors: [_Alex, HmmmQuestionMark]
-softdepend: [CensoredLib]
 commands:
     broadcastery:
         usage: /broadcastery [option] [args]
